@@ -4,36 +4,74 @@ spring:
     - dev
 ---
 server:
-  port: 7001 #×¢²áÖĞĞÄÕ¼ÓÃ7001¶Ë¿Ú£¬Ã°ºÅºóÃæ±ØĞëÒªÓĞ¿Õ¸ñ
-
+  port: 8001
 spring:
-  profiles: dev
-  application:
-    name: microservice-config-eureka-client
+   profiles: dev
+   application:
+    name: microservice-config-dept-client
+   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # å½“å‰æ•°æ®æºæ“ä½œç±»å‹
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysqlé©±åŠ¨åŒ…
+    url: jdbc:mysql://localhost:3306/cloudDB01              # æ•°æ®åº“åç§°
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5                                           # æ•°æ®åº“è¿æ¥æ± çš„æœ€å°ç»´æŒè¿æ¥æ•°
+      initial-size: 5                                       # åˆå§‹åŒ–è¿æ¥æ•°
+      max-total: 5                                          # æœ€å¤§è¿æ¥æ•°
+      max-wait-millis: 200                                 # ç­‰å¾…è¿æ¥è·å–çš„æœ€å¤§è¶…æ—¶æ—¶é—´
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatisé…ç½®æ–‡ä»¶æ‰€åœ¨è·¯å¾„
+  type-aliases-package: com.acivii.springcloud.entities    # æ‰€æœ‰Entityåˆ«åç±»æ‰€åœ¨åŒ…
+  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapperæ˜ å°„æ–‡ä»¶
 
 eureka:
-  instance:
-    hostname: eureka7001.com #Ã°ºÅºóÃæ±ØĞëÒªÓĞ¿Õ¸ñ
   client:
-    register-with-eureka: false     #false±íÊ¾²»Ïò×¢²áÖĞĞÄ×¢²á×Ô¼º¡£
-    fetch-registry: false     #²»Í¨¹ıeureka»ñÈ¡×¢²áĞÅÏ¢
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: dept-8001.com
+    prefer-ip-address: true
+
+info:
+  app.name: acivii-microservice-springcloudconfig01
+  company.name: www.acivii.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
 ---
-
 server:
-  port: 7001 #×¢²áÖĞĞÄÕ¼ÓÃ7001¶Ë¿Ú£¬Ã°ºÅºóÃæ±ØĞëÒªÓĞ¿Õ¸ñ
-
+  port: 8001
 spring:
   profiles: test
   application:
-    name: microservice-config-eureka-client
+    name: microservice-config-dept-client
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # å½“å‰æ•°æ®æºæ“ä½œç±»å‹
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysqlé©±åŠ¨åŒ…
+    url: jdbc:mysql://localhost:3306/cloudDB02              # æ•°æ®åº“åç§°
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5                                           # æ•°æ®åº“è¿æ¥æ± çš„æœ€å°ç»´æŒè¿æ¥æ•°
+      initial-size: 5                                       # åˆå§‹åŒ–è¿æ¥æ•°
+      max-total: 5                                          # æœ€å¤§è¿æ¥æ•°
+      max-wait-millis: 200                                 # ç­‰å¾…è¿æ¥è·å–çš„æœ€å¤§è¶…æ—¶æ—¶é—´
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatisé…ç½®æ–‡ä»¶æ‰€åœ¨è·¯å¾„
+  type-aliases-package: com.acivii.springcloud.entities    # æ‰€æœ‰Entityåˆ«åç±»æ‰€åœ¨åŒ…
+  mapper-locations: classpath:mybatis/mapper/**/*.xml       # mapperæ˜ å°„æ–‡ä»¶
 
 eureka:
-  instance:
-    hostname: eureka7001.com #Ã°ºÅºóÃæ±ØĞëÒªÓĞ¿Õ¸ñ
   client:
-    register-with-eureka: false     #false±íÊ¾²»Ïò×¢²áÖĞĞÄ×¢²á×Ô¼º¡£
-    fetch-registry: false     #²»Í¨¹ıeureka»ñÈ¡×¢²áĞÅÏ¢
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka/
+      defaultZone: http://eureka8001.com:8001/eureka
+  instance:
+    instance-id: dept-8001.com
+    prefer-ip-address: true
+
+info:
+  app.name: acivii-microservice-springcloudconfig02
+  company.name: www.acivii.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
