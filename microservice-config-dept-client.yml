@@ -75,4 +75,3 @@ info:
   company.name: www.acivii.com
   build.artifactId: $project.artifactId$
   build.version: $project.version$
-
